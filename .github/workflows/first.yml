@@ -6,16 +6,16 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
-      - name:  print message for 3rd job
+      - name:  print message for 5th job
         run: sleep 10
-             echo "This is third job"
+             echo "This is 5th job"
 
   second-job:
     runs-on: ubuntu-latest
     needs: first-job
     steps:
-      - name:  print message for 2nd job
+      - name:  print message for 4th job
         run: sleep 5
-             echo "This is second job"
+             echo "This is 4th job"
              
    
