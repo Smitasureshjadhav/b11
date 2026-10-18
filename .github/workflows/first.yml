@@ -3,17 +3,18 @@ name: b11-workflow
 on: push
 
 jobs:
-  first:
+  first-job:
     runs-on: ubuntu-latest
     steps:
-      - name:  print message
-        run: echo "Hello guys how are you"
+      - name:  print message for 3rd job
+        run: sleep 10
+             echo "This is third job"
 
-      - name: show content of /etc/passwd
-        run: sudo cat /etc/passwd
-
-      - name: show content /etc/os-release
-        run: sudo cat "/etc/passwd"
-
-      - name: show os details
-        run: sudo cat /etc/os-release  
+  first-job:
+    runs-on: ubuntu-latest
+    needs: first-job
+    steps:
+      - name:  print message for 2nd job
+        run: sleep 5
+             echo "This is second job"
+   
