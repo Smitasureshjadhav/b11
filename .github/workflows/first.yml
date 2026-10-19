@@ -6,18 +6,29 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
-      - name:  print message for 5th job
-        run: |
-             sleep 10
-             echo "This is 5th job"
+      - name: create a file
+        run:  echo "This is test report" > report.txt
+
+      - name: upload a file
+        uses: actions/upload-artifact@v4
+        with:
+          name: report.txt
+          path: ./report.txt
+
 
   second-job:
     runs-on: ubuntu-latest
     needs: first-job
     steps:
-      - name:  print message for 4th job
-        run: |
-             sleep 5
-             echo "This is 4th job"
+
+
+      - name: download the artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: report.txt
+
+      - name:  viewing the report from first job
+        run: cat report.txt
+             
              
    
