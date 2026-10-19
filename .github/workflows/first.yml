@@ -1,13 +1,25 @@
-name: b11-workflow
+name: Node.js Example
 
-on: push
+on: workflow_dispatch
 
 jobs:
-  run_addition:
-    runs-on: [self-hosted, Linux]
-    steps:
-      - name: create a file and view it
-        run: |
-            echo "test" > report.txt
-            cat report.txt
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14, 16, 18]
+
+steps:
+  - uses: actions/checkout@v4
+
+  - name: Use Node.js ${{ matrix.node-version }}
+    uses: actions/setup-node@v4
+    with:
+      node-version: ${{ matrix.node-version }}
+
+  - name: Install dependencies
+    run: npm Install
+
+  - name: Run tests   
+    run: npm test
    
