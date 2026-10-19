@@ -7,7 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name:  print message for 5th job
-        run: sleep 10
+        run: |
+             sleep 10
              echo "This is 5th job"
 
   second-job:
@@ -15,7 +16,8 @@ jobs:
     needs: first-job
     steps:
       - name:  print message for 4th job
-        run: sleep 5
+        run: |
+             sleep 5
              echo "This is 4th job"
              
    
